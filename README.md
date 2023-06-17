@@ -15,5 +15,5 @@ Dependencies:
 - UIKit: Provides the foundation for building the app's user interface.
 - Foundation: Supports fundamental data types, such as dates and URLs.
 
-Screenshot:
+
 <img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/6c7fb337-4a61-41e2-a66f-0ee089eefe62" width="300">
