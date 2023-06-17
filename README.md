@@ -17,3 +17,5 @@ Dependencies:
 
 
 <img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/6c7fb337-4a61-41e2-a66f-0ee089eefe62" width="300">
+<img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/1cbbdf57-da3b-476b-9e28-b97d8733964d" width="300">
+<img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/148c2b62-728f-4a0a-9210-44da5ef430a8" width="300">
