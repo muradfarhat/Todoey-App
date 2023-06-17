@@ -16,4 +16,4 @@ Dependencies:
 - Foundation: Supports fundamental data types, such as dates and URLs.
 
 Screenshot:
-![simulator_screenshot_63E723CC-AD33-43E0-9E75-51CD02001765](https://github.com/muradfarhat/Todoey-App/assets/92052407/6c7fb337-4a61-41e2-a66f-0ee089eefe62)
+<img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/6c7fb337-4a61-41e2-a66f-0ee089eefe62" width="300">
