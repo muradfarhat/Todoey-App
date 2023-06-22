@@ -56,7 +56,8 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.present(addItemDialog, animated: true)
     }
     
-    func toDoItemEditAlert(task: ToDoListItem) {
+    // Edit item in table method
+    func toDoItemEditAlert(task: ToDoListItem, index: IndexPath) {
         let addItemDialog = UIAlertController(title: "Edit Task", message: task.name, preferredStyle: .alert)
         
         addItemDialog.addTextField(configurationHandler: { textField in
@@ -65,8 +66,8 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let add = UIAlertAction(title: "Edit", style: .default, handler: { action in
             let textFieldContent = addItemDialog.textFields?.first?.text ?? ""
-            self.ToDoListCoreDataVM.updateToDoItem(item: task, newName: textFieldContent)
-            self.reloadTableData()
+            self.models[index.row] = self.ToDoListCoreDataVM.updateToDoItem(item: task, newName: textFieldContent)
+            self.toDoItemsTableView.reloadRows(at: [index], with: .automatic)
         })
         addItemDialog.addAction(add)
         
@@ -88,17 +89,18 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = toDoItemsTableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell
         
         let editButtonHandler = {
-            self.toDoItemEditAlert(task: self.models[indexPath.row])
+            self.toDoItemEditAlert(task: self.models[indexPath.row], index: indexPath)
         }
         
         let deleteButtonHandler = {
             self.ToDoListCoreDataVM.deleteToDoItem(item: self.models[indexPath.row])
-            self.reloadTableData()
+            self.models.remove(at: indexPath.row)
+            self.toDoItemsTableView.reloadData()
         }
         
         let isDoneButtonHandler = {
-            self.ToDoListCoreDataVM.markAsDone(item: self.models[indexPath.row])
-            self.reloadTableData()
+            self.models[indexPath.row] = self.ToDoListCoreDataVM.markAsDone(item: self.models[indexPath.row])
+            self.toDoItemsTableView.reloadRows(at: [indexPath], with: .automatic)
         }
         
         let ToDoListCellViewModel = ToDoListCellViewModel(taskTitle: models[indexPath.row].name!, taskCreatedTime: models[indexPath.row].createdAt!, isDone: models[indexPath.row].isDone as! Bool, editHandler: editButtonHandler, deleteHandler: deleteButtonHandler, isDoneHandler: isDoneButtonHandler)

@@ -28,8 +28,6 @@ class TableViewCell: UITableViewCell {
         self.editButtonTapHandler = task.editButtonHandler
         self.deleteButtonTapHandler = task.deleteButtonHandler
         self.isDoneButtonTapHandler = task.isDoneSwitchHandler
-        
-        backgroundColor = task.taskIsDone == true ? .placeholderText : .white
     }
     
     @IBAction func isDoneButton(_ sender: Any) {

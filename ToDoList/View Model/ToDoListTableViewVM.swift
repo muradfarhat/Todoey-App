@@ -35,14 +35,16 @@ class ToDoListTableViewVM {
         saveContext()
     }
     
-    func updateToDoItem(item: ToDoListItem, newName: String) {
+    func updateToDoItem(item: ToDoListItem, newName: String) -> ToDoListItem {
         item.name = newName
         saveContext()
+        return item
     }
     
-    func markAsDone(item: ToDoListItem) {
+    func markAsDone(item: ToDoListItem) -> ToDoListItem{
         item.isDone = item.isDone == true ? false as NSNumber : true as NSNumber
         saveContext()
+        return item
     }
     
     func saveContext() {
