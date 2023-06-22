@@ -22,12 +22,13 @@ class ToDoListTableViewVM {
         return models
     }
     
-    func createToDoItem(itemName: String) {
+    func createToDoItem(itemName: String) -> ToDoListItem {
         let newItem = ToDoListItem(context: context)
         newItem.name = itemName
         newItem.createdAt = Date()
         newItem.isDone = false
         saveContext()
+        return newItem
     }
     
     func deleteToDoItem(item: ToDoListItem) {

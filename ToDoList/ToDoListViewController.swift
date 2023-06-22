@@ -45,8 +45,9 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let add = UIAlertAction(title: "Add", style: .default, handler: { action in
             let textFieldContent = addItemDialog.textFields?.first?.text ?? ""
-            self.ToDoListCoreDataVM.createToDoItem(itemName: textFieldContent)
-            self.reloadTableData()
+            let newTask = self.ToDoListCoreDataVM.createToDoItem(itemName: textFieldContent)
+            self.models.append(newTask)
+            self.toDoItemsTableView.reloadData()
         })
         addItemDialog.addAction(add)
         
