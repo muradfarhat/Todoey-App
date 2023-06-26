@@ -96,7 +96,7 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let deleteButtonHandler = {
             self.ToDoListCoreDataVM.deleteToDoItem(item: self.models[indexPath.row])
             self.models.remove(at: indexPath.row)
-            self.toDoItemsTableView.reloadData()
+            self.toDoItemsTableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.right)
         }
         
         let isDoneButtonHandler = {
