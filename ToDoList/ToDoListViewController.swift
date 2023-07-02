@@ -86,25 +86,59 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         return self.models.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = toDoItemsTableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell
-        
-        let editButtonHandler = {
-            self.toDoItemEditAlert(task: self.models[indexPath.row], index: indexPath)
-        }
-        
-        let deleteButtonHandler = {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // trailing swipe actions method
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteItem = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue) in
             self.ToDoListCoreDataVM.deleteToDoItem(item: self.models[indexPath.row])
             self.models.remove(at: indexPath.row)
             self.toDoItemsTableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.right)
         }
+        deleteItem.backgroundColor = UIColor.red
         
-        let isDoneButtonHandler = {
+        let editItem = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
+            self.toDoItemEditAlert(task: self.models[indexPath.row], index: indexPath)
+        }
+        editItem.backgroundColor = UIColor.blue
+        
+        let trailingSwipeActions = UISwipeActionsConfiguration(actions: [deleteItem, editItem])
+        return trailingSwipeActions
+    }
+    
+    // leading swipe actions method
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let markAsDone = UIContextualAction(style: .normal, title: "Done") { (contextualAction, view, boolValue) in
             self.models[indexPath.row] = self.ToDoListCoreDataVM.markAsDone(item: self.models[indexPath.row])
             self.toDoItemsTableView.reloadRows(at: [indexPath], with: .automatic)
         }
+        markAsDone.backgroundColor = UIColor.brown
         
-        let ToDoListCellViewModel = ToDoListCellViewModel(taskTitle: models[indexPath.row].name!, taskCreatedTime: models[indexPath.row].createdAt!, isDone: models[indexPath.row].isDone as! Bool, editHandler: editButtonHandler, deleteHandler: deleteButtonHandler, isDoneHandler: isDoneButtonHandler)
+        let leadingSwipeActions = UISwipeActionsConfiguration(actions: [markAsDone])
+        return leadingSwipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = toDoItemsTableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell
+        
+//        let editButtonHandler = {
+//            self.toDoItemEditAlert(task: self.models[indexPath.row], index: indexPath)
+//        }
+//
+//        let deleteButtonHandler = {
+//            self.ToDoListCoreDataVM.deleteToDoItem(item: self.models[indexPath.row])
+//            self.models.remove(at: indexPath.row)
+//            self.toDoItemsTableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.right)
+//        }
+//
+//        let isDoneButtonHandler = {
+//            self.models[indexPath.row] = self.ToDoListCoreDataVM.markAsDone(item: self.models[indexPath.row])
+//            self.toDoItemsTableView.reloadRows(at: [indexPath], with: .automatic)
+//        }
+        
+        let ToDoListCellViewModel = ToDoListCellViewModel(taskTitle: models[indexPath.row].name!, taskCreatedTime: models[indexPath.row].createdAt!, isDone: models[indexPath.row].isDone as! Bool)
         
         cell?.setItemData(task: ToDoListCellViewModel)
         
