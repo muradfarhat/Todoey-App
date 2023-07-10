@@ -4,17 +4,19 @@ With Todoey, you can create, update, and delete tasks effortlessly. The app prov
 
 Key Features:
 
-Create and manage tasks: Add new tasks, update existing ones, and mark tasks as completed.
-Swipe to delete, edit, and mark as done: Effortlessly manage your tasks with intuitive swipe gestures.
-Data persistence with Core Data: All your tasks are securely stored using Core Data, ensuring data persistence across app launches.
-MVVM design pattern: The app follows the MVVM design pattern, separating concerns and providing a scalable architecture.
+* Create and manage tasks: Add new tasks, update existing ones, and mark tasks as completed.
+* Swipe to delete, edit, and mark as done: Effortlessly manage your tasks with intuitive swipe gestures.
+* Data persistence with Core Data: All your tasks are securely stored using Core Data, ensuring data persistence across app launches.
+* MVVM design pattern: The app follows the MVVM design pattern, separating concerns and providing a scalable architecture.
+
+
 Technical Details: Todoey is built using Swift, Apple's modern programming language for iOS development. The app utilizes Core Data, Apple's powerful framework for data persistence, to store and manage tasks. The MVVM design pattern is employed to maintain a clear separation between the data model, view, and business logic.
 
 Dependencies:
 
-CoreData: Used for data persistence and managing the task entities.
-UIKit: Provides the foundation for building the app's user interface.
-Foundation: Supports fundamental data types, such as dates and URLs.
+* CoreData: Used for data persistence and managing the task entities.
+* UIKit: Provides the foundation for building the app's user interface.
+* Foundation: Supports fundamental data types, such as dates and URLs.
 
 
 <img src="https://github.com/muradfarhat/Todoey-App/assets/92052407/465d59bf-bc43-437d-8c55-6b63eb2c1220" width="300">
